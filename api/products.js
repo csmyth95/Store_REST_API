@@ -18,7 +18,7 @@ module.exports = (app, options) => {
 		}).catch(next);
 	});
 
-	app.get('/search', (req, res) => {
+	app.get('/search', (req, res, next) => {
 		// get the name
 		var name = req.query.name;
 		if (!name) {
@@ -26,7 +26,7 @@ module.exports = (app, options) => {
 		}
 
 		// get the product from the repository
-		options.repository.getUserByName(name).then((product) => {
+		options.repository.getProductByName(name).then((product) => {
 			if (!product) {
 				res.status(404).send('Product not found');
 			} else {
@@ -36,6 +36,7 @@ module.exports = (app, options) => {
 					price: product.price
 				});
 			}
-		}).catch(next);
+		})
+		.catch(next);
 	});
 };

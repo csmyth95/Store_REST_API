@@ -32,7 +32,7 @@ class Repository {
 
 	}
 
-	getProductsByName(name) {
+	getProductByName(name) {
 		return new Promise((resolve, reject) => {
 			// Fetch the product
 			this.connection.query('SELECT name, description, price FROM inventory WHERE name = ?', [name], (err, results) => {
@@ -60,7 +60,7 @@ class Repository {
 module.exports.connect = (connectionSettings) => {
 	return new Promise((resolve, reject) => {
 		if(!connectionSettings.host) throw new Error("A host must be specified.");
-		if(!connectionsettings.host) throw new Error("A user must be specified.");
+		if(!connectionSettings.host) throw new Error("A user must be specified.");
 		if(!connectionSettings.password) throw new Error("A password must be specified.");
 		if(!connectionSettings.port) throw new Error("A port must be specified.");
 

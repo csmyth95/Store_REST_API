@@ -30,7 +30,7 @@ repository.connect({
 		port: config.port,
 		repository: repo,
 	});
-}).then((app) = >
+}).then((app) => {
 	console.log("Server started successfully, running on port " + config.port + ".");
 	app.on('close', () => {
 		repository.disconnect();
